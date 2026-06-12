@@ -57,8 +57,9 @@ body {
 
 /* Section wrappers */
 .page-section {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
 .app-container {
@@ -184,8 +185,8 @@ body {
 }
 
 .celestial-object {
-  width: 500px;
-  height: 500px;
+  width: min(70vh, 500px);
+  height: min(70vh, 500px);
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #ff9980, #ff6b4a, #cc3300);
   box-shadow:
