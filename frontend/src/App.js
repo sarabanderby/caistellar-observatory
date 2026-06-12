@@ -49,6 +49,16 @@ function App() {
     return () => clearInterval(interval);
   }, [BACKEND_BASE]);
 
+  // Auto-dismiss error after 5 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   // Load Aladin Lite on mount
   useEffect(() => {
     const script = document.createElement('script');
@@ -630,9 +640,27 @@ function App() {
           color: 'white',
           padding: '15px 30px',
           borderRadius: '4px',
-          zIndex: 1000
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '20px'
         }}>
-          {error}
+          <span>{error}</span>
+          <button
+            onClick={() => setError(null)}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'white',
+              fontSize: '20px',
+              cursor: 'pointer',
+              padding: '0',
+              lineHeight: '1'
+            }}
+            title="Dismiss"
+          >
+            ✕
+          </button>
         </div>
       )}
 
